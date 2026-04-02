@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Work": {
+      "title": "Work",
+      "description": "A portfolio work item.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the work."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the work."
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the work's image."
+        },
+        "link": {
+          "type": "string",
+          "format": "uri",
+          "description": "External link to the work."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp."
+        }
+      },
+      "required": ["title", "imageUrl", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/works/{workId}": {
+      "schema": {
+        "$ref": "#/entities/Work"
+      },
+      "description": "Collection of portfolio works."
+    }
+  }
+}
