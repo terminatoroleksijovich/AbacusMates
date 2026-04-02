@@ -3,6 +3,9 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Admin from "./pages/Admin";
+import BrandKit from "./pages/BrandKit";
+import SecretGateway from "./pages/SecretGateway";
+import PostGenerator from "./pages/PostGenerator";
 
 export default function App() {
   return (
@@ -12,6 +15,9 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/brand-kit" element={<BrandKit />} />
+        <Route path="/secret" element={<SecretGateway />} />
+        <Route path="/post-generator" element={<PostGenerator />} />
       </Routes>
     </BrowserRouter>
   );

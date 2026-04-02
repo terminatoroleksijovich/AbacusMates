@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
 import { Pattern } from "../components/Navbar";
 import { Trash2 } from "lucide-react";
 
 export default function Admin() {
-  const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   
   const [title, setTitle] = useState("");
@@ -19,33 +20,27 @@ export default function Admin() {
   const [works, setWorks] = useState<any[]>([]);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
+    if (localStorage.getItem("auth_admin") === "true") {
+      setIsAuthenticated(true);
+    } else {
+      navigate("/");
+    }
+    setLoading(false);
+  }, [navigate]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!isAuthenticated) return;
     const q = query(collection(db, "works"), orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setWorks(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
     return () => unsubscribe();
-  }, [user]);
+  }, [isAuthenticated]);
 
-  const handleLogin = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-    } catch (err: any) {
-      console.error(err);
-      setError(err.message);
-    }
+  const handleLogout = () => {
+    localStorage.removeItem("auth_admin");
+    navigate("/");
   };
-
-  const handleLogout = () => signOut(auth);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,25 +81,7 @@ export default function Admin() {
     }
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center px-6 relative">
-        <Pattern />
-        <div className="bg-white p-12 rounded-[2rem] border-4 border-brand-dark shadow-[8px_8px_0px_0px_#1a1a1a] max-w-md w-full text-center relative z-10">
-          <h1 className="font-display text-4xl font-bold uppercase mb-6">Admin Login</h1>
-          {error && <p className="text-brand-red mb-4 font-medium">{error}</p>}
-          <button 
-            onClick={handleLogin}
-            className="w-full bg-brand-dark text-brand-bg font-bold uppercase tracking-wider py-4 rounded-xl hover:bg-brand-red hover:text-white transition-colors"
-          >
-            Sign in with Google
-          </button>
-        </div>
-      </div>
-    );
-  }
+  if (loading || !isAuthenticated) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   return (
     <div className="min-h-screen pt-32 px-6 md:px-12 pb-32 relative">
