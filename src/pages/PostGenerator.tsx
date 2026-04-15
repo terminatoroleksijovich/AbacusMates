@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 import { Pattern, Logo } from "../components/Navbar";
-import { Download, Instagram, LayoutTemplate, Type, Image as ImageIcon, Maximize, ChevronDown, ChevronUp, Copy, Bot, Sparkles, Upload } from "lucide-react";
+import { Download, Instagram, LayoutTemplate, Type, Image as ImageIcon, Maximize, ChevronDown, ChevronUp, Copy, Bot, Sparkles, Upload, Maximize2, X } from "lucide-react";
 
 type TemplateType = "red" | "lime" | "dark" | "brutalist" | "minimal" | "split" | "grid" | "port-1" | "port-2" | "port-3" | "port-4" | "port-5";
 type SlideType = "cover" | "content" | "cta";
@@ -31,6 +31,8 @@ export default function PostGenerator() {
   const previewRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.4);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [screenshotScale, setScreenshotScale] = useState(1);
 
   useEffect(() => {
     if (localStorage.getItem("auth_post") === "true") {
@@ -69,19 +71,29 @@ export default function PostGenerator() {
     return () => window.removeEventListener("resize", updateScale);
   }, [aspectRatio]);
 
+  useEffect(() => {
+    if (isFullscreen) {
+      const { width, height } = getDimensions(aspectRatio);
+      const fit = Math.min((window.innerWidth - 80) / width, (window.innerHeight - 120) / height);
+      setScreenshotScale(fit > 1 ? 1 : fit);
+    }
+  }, [isFullscreen, aspectRatio]);
+
   const handleExport = async () => {
     if (!previewRef.current) return;
     
     try {
-      const canvas = await html2canvas(previewRef.current, {
-        scale: 1,
-        useCORS: true,
-        backgroundColor: null,
+      const dataUrl = await toPng(previewRef.current, {
+        cacheBust: true,
+        pixelRatio: 2, // High quality export (2x resolution)
+        style: {
+          transform: 'scale(1)',
+          transformOrigin: 'top left'
+        }
       });
       
-      const url = canvas.toDataURL("image/png");
       const a = document.createElement("a");
-      a.href = url;
+      a.href = dataUrl;
       a.download = `abacus-post-${template}-${slideType}-${aspectRatio.replace(':', 'x')}.png`;
       document.body.appendChild(a);
       a.click();
@@ -319,12 +331,18 @@ export default function PostGenerator() {
             </div>
 
             {/* Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 shrink-0">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 shrink-0">
               <button 
                 onClick={handleExport}
                 className="flex items-center justify-center gap-2 bg-brand-dark text-brand-bg font-bold uppercase tracking-wider py-4 rounded-xl hover:bg-brand-red transition-colors"
               >
-                <Download className="w-5 h-5" /> Download PNG
+                <Download className="w-5 h-5" /> Download
+              </button>
+              <button 
+                onClick={() => setIsFullscreen(true)}
+                className="flex items-center justify-center gap-2 bg-brand-red text-white font-bold uppercase tracking-wider py-4 rounded-xl hover:bg-brand-dark transition-colors"
+              >
+                <Maximize2 className="w-5 h-5" /> Screenshot
               </button>
               <a 
                 href="https://www.instagram.com/meyre.visuals/"
@@ -332,12 +350,59 @@ export default function PostGenerator() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 border-4 border-brand-dark text-brand-dark font-bold uppercase tracking-wider py-4 rounded-xl hover:bg-brand-bg transition-colors text-center"
               >
-                <Instagram className="w-5 h-5" /> Go to Instagram
+                <Instagram className="w-5 h-5" /> Instagram
               </a>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Screenshot Mode */}
+      {isFullscreen && (
+        <div className="fixed inset-0 z-[100] bg-neutral-900 overflow-auto">
+          <div className="min-h-full flex flex-col items-center justify-center py-12">
+            <div className="fixed top-6 right-6 flex gap-4 z-[110]">
+              <button 
+                onClick={() => setScreenshotScale(s => s === 1 ? Math.min((window.innerWidth - 80) / width, (window.innerHeight - 120) / height) : 1)} 
+                className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-bold uppercase text-sm transition-colors backdrop-blur-sm"
+              >
+                {screenshotScale === 1 ? "Fit to Screen" : "Actual Size (100%)"}
+              </button>
+              <button 
+                onClick={() => setIsFullscreen(false)} 
+                className="bg-brand-red hover:bg-red-600 text-white p-3 rounded-xl transition-colors shadow-xl"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="text-white/50 text-sm font-bold uppercase tracking-widest mb-8">
+              Screenshot Mode (Use Cmd+Shift+4 or Win+Shift+S)
+            </div>
+            
+            <div 
+              className="relative flex items-center justify-center transition-all duration-300"
+              style={{ 
+                width: `${width * screenshotScale}px`, 
+                height: `${height * screenshotScale}px`,
+              }}
+            >
+              <div 
+                className="absolute top-0 left-0 shadow-2xl origin-top-left transition-transform duration-300"
+                style={{ 
+                  width: `${width}px`, 
+                  height: `${height}px`,
+                  transform: `scale(${screenshotScale})`
+                }}
+              >
+                <div className="w-full h-full relative overflow-hidden bg-white">
+                  <PostSlide template={template} slideType={slideType} content={content} aspectRatio={aspectRatio} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

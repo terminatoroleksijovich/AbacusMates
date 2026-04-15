@@ -35,6 +35,9 @@ export default function Navbar() {
         <span className="font-display font-bold text-xl tracking-tight hidden sm:inline-block group-hover:text-brand-red transition-colors duration-300">ABACUS MATES</span>
       </Link>
       <div className="flex items-center gap-4 pointer-events-auto">
+        <Link to="/why-so-cheap" className="font-display font-bold uppercase tracking-wider text-sm hover:text-brand-red transition-colors hidden md:block">
+          Why So Cheap?
+        </Link>
         <Link to="/portfolio" className="font-display font-bold uppercase tracking-wider text-sm hover:text-brand-red transition-colors">
           Works
         </Link>

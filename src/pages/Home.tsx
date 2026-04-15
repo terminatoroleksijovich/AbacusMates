@@ -172,7 +172,7 @@ export default function Home() {
             variants={fadeUp}
             className="mt-8 text-xl md:text-3xl max-w-2xl font-medium text-brand-dark/80"
           >
-            Purposeful design. Fast. Zero headache for you <br className="hidden md:block" />(we take the painkillers).
+            No agency BS. Just me, building sick websites that actually convert. <br className="hidden md:block" />(and taking the headache away).
           </motion.p>
 
           <motion.div
@@ -222,7 +222,7 @@ export default function Home() {
               <ShieldAlert className="w-16 h-16 text-brand-red shrink-0" />
             </motion.div>
             <h2 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight">
-              A bad website <br className="hidden md:block" />kills trust <br className="hidden md:block" /><span className="text-brand-red text-3xl md:text-5xl">(and makes us cry)</span>
+              A bad website <br className="hidden md:block" />kills trust <br className="hidden md:block" /><span className="text-brand-red text-3xl md:text-5xl">(and makes me cry)</span>
             </h2>
           </motion.div>
           
@@ -231,13 +231,13 @@ export default function Home() {
               variants={fadeUp}
               className="text-2xl md:text-3xl leading-snug font-medium"
             >
-              You might be the best expert in your niche. You might have the perfect product. But if your website looks like a greeting from 2007 — <span className="text-brand-red">they won't trust you.</span> They'll just run away.
+              You might be the absolute best at what you do. But if your site looks like some template from 2007 — <span className="text-brand-red">people won't trust you.</span> They just bounce.
             </motion.div>
             <motion.div 
               variants={fadeUp}
               className="text-lg md:text-xl leading-relaxed text-brand-bg/70"
             >
-              Bad design destroys your competence. It screams to clients: "We are amateurs". Don't lose money and reputation over visual garbage. Your business deserves packaging that sells itself and commands respect from the first second.
+              Bad design screams "we don't care". Don't lose money and reputation over visual garbage. Your business deserves a vibe that sells itself and commands respect the second they click the link.
             </motion.div>
           </div>
         </motion.div>
@@ -266,30 +266,30 @@ export default function Home() {
           className="max-w-6xl mx-auto relative z-10"
         >
           <motion.h2 variants={fadeUp} className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight text-brand-dark mb-6">
-            Minimum <br/>effort from you.
+            Zero <br/>headache.
           </motion.h2>
           <motion.p variants={fadeUp} className="text-xl md:text-3xl font-medium text-brand-dark/70 mb-16 max-w-3xl">
-            We value your time. No endless calls or complicated briefs.
+            I hate endless corporate calls as much as you do. We keep it simple.
           </motion.p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 num: "01",
-                title: "Idea",
-                desc: "We discuss your task, goals, and vision. Fast and to the point. No 5-hour meetings.",
+                title: "The Vibe",
+                desc: "We chat in DMs, figure out what you need and what your vibe is. Fast and direct.",
                 icon: <Zap className="w-10 h-10" />
               },
               {
                 num: "02",
-                title: "Prototype",
-                desc: "I show you an interactive prototype. You see how it works before any code is written.",
+                title: "The Draft",
+                desc: "I build an interactive prototype. You click around and see exactly how it feels before we finalize.",
                 icon: <CheckCircle2 className="w-10 h-10" />
               },
               {
                 num: "03",
-                title: "Release",
-                desc: "You approve, and within a week you get a fully finished and deployed website. Magic.",
+                title: "The Launch",
+                desc: "You give the thumbs up, and boom. You get a fully deployed, sick website. Easy.",
                 icon: <Clock className="w-10 h-10" />
               }
             ].map((step, i) => (
@@ -334,7 +334,7 @@ export default function Home() {
               Pricing that doesn't bite <span className="text-brand-dark">(much)</span>.
             </h2>
             <p className="text-xl md:text-3xl font-medium text-white/90 mb-10 leading-relaxed">
-              We just launched, so we're offering an exclusive discount for clients coming through Instagram.
+              I'm not an agency with huge overhead. I just do this for the soul. So the price is fair.
             </p>
             <motion.div 
               animate={{ y: [0, -15, 0], rotate: [-3, -1, -3] }}
@@ -342,7 +342,7 @@ export default function Home() {
               whileHover={{ scale: 1.05, rotate: 0, transition: { type: "spring", stiffness: 400, damping: 10 } }}
               className="inline-block bg-brand-dark text-brand-bg font-display font-bold text-5xl md:text-7xl px-10 py-6 rounded-[2.5rem] -rotate-3 shadow-[12px_12px_0px_0px_#f27983] transition-transform cursor-default"
             >
-              under $1000
+              around $1000
             </motion.div>
             <br/>
             <p className="mt-8 text-xl font-bold text-brand-dark uppercase tracking-widest bg-brand-bg inline-block px-4 py-2 rounded-lg">
@@ -358,11 +358,11 @@ export default function Home() {
             <div className="bg-brand-pink rounded-[3rem] p-8 md:p-12 border-4 border-brand-dark relative z-10">
               <ul className="space-y-6 md:space-y-8">
                 {[
-                  "Unique design (no boring templates)",
-                  "Responsive layout",
-                  "Basic SEO optimization",
-                  "Analytics setup",
-                  "Domain connection"
+                  "Custom design (no trash templates)",
+                  "Looks sick on mobile",
+                  "Basic SEO so Google finds you",
+                  "Analytics hooked up",
+                  "Domain & hosting sorted"
                 ].map((item, i) => (
                   <motion.li 
                     key={i} 
@@ -407,13 +407,13 @@ export default function Home() {
             <Heart className="w-20 h-20 text-brand-red mx-auto mb-10 fill-brand-red" />
           </motion.div>
           <motion.h2 variants={fadeUp} className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight text-brand-dark mb-10">
-            Looking for soulful projects
+            Looking for cool people
           </motion.h2>
           <motion.p variants={fadeUp} className="text-2xl md:text-4xl font-medium text-brand-dark/80 leading-relaxed mb-12">
-            If your idea and the spirit of your work resonate with me — I (Victor) will personally make a <span className="text-brand-red font-bold">free prototype</span> for you and give an extra discount.
+            If your vibe matches mine and your project sounds fun — I'll literally build you a <span className="text-brand-red font-bold">free prototype</span> upfront. No strings attached.
           </motion.p>
           <motion.div variants={fadeUp} className="inline-block bg-brand-dark text-brand-bg px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm md:text-base shadow-[6px_6px_0px_0px_#f27983]">
-            * The work goes into my portfolio
+            * I just want cool stuff for my portfolio
           </motion.div>
         </motion.div>
       </section>
