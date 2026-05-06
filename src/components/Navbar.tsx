@@ -34,18 +34,21 @@ export default function Navbar() {
         </motion.div>
         <span className="font-display font-bold text-xl tracking-tight hidden sm:inline-block group-hover:text-brand-red transition-colors duration-300">ABACUS MATES</span>
       </Link>
-      <div className="flex items-center gap-4 pointer-events-auto">
-        <Link to="/why-so-cheap" className="font-display font-bold uppercase tracking-wider text-sm hover:text-brand-red transition-colors hidden md:block">
+      <div className="flex items-center gap-2 md:gap-4 pointer-events-auto">
+        <Link to="/why-so-cheap" className="font-display font-bold uppercase tracking-wider text-sm md:text-base lg:text-lg border-2 border-brand-bg px-4 py-2 lg:px-8 lg:py-3 rounded-full hover:bg-brand-bg hover:text-brand-dark transition-colors hidden lg:block">
           Why So Cheap?
         </Link>
-        <Link to="/portfolio" className="font-display font-bold uppercase tracking-wider text-sm hover:text-brand-red transition-colors">
+        <Link to="/reviews" className="font-display font-bold uppercase tracking-wider text-sm md:text-base lg:text-lg border-2 border-brand-bg px-4 py-2 lg:px-8 lg:py-3 rounded-full hover:bg-brand-bg hover:text-brand-dark transition-colors hidden md:block">
+          Reviews
+        </Link>
+        <Link to="/portfolio" className="font-display font-bold uppercase tracking-wider text-sm md:text-base lg:text-lg border-2 border-brand-bg px-4 py-2 lg:px-8 lg:py-3 rounded-full hover:bg-brand-bg hover:text-brand-dark transition-colors">
           Works
         </Link>
         <a 
           href="https://www.instagram.com/meyre.visuals/"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-display font-bold uppercase tracking-wider text-sm border-2 border-brand-bg px-6 py-2 rounded-full hover:bg-brand-bg hover:text-brand-dark transition-colors"
+          className="font-display font-bold uppercase tracking-wider text-sm md:text-base lg:text-lg border-2 border-brand-bg px-6 py-2 lg:px-8 lg:py-3 rounded-full hover:bg-brand-bg hover:text-brand-dark transition-colors"
         >
           Contact
         </a>

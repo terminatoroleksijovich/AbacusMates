@@ -7,6 +7,7 @@ import BrandKit from "./pages/BrandKit";
 import SecretGateway from "./pages/SecretGateway";
 import PostGenerator from "./pages/PostGenerator";
 import WhySoCheap from "./pages/WhySoCheap";
+import Reviews from "./pages/Reviews";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/why-so-cheap" element={<WhySoCheap />} />
+        <Route path="/reviews" element={<Reviews />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/brand-kit" element={<BrandKit />} />
         <Route path="/secret" element={<SecretGateway />} />

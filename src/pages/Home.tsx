@@ -226,20 +226,72 @@ export default function Home() {
             </h2>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 gap-12 md:gap-24 mt-12">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-24 mt-12 mb-24">
             <motion.div 
               variants={fadeUp}
-              className="text-2xl md:text-3xl leading-snug font-medium"
+              className="space-y-6"
             >
-              You might be the absolute best at what you do. But if your site looks like some template from 2007 — <span className="text-brand-red">people won't trust you.</span> They just bounce.
+              <h3 className="font-display text-3xl font-bold uppercase text-brand-pink tracking-wide">Sound familiar?</h3>
+              <ul className="space-y-4 text-xl font-medium leading-snug">
+                <li className="flex gap-4">
+                  <span className="text-brand-red">✦</span>
+                  <span>You drive traffic from Insta, but the second they hit your generic link-in-bio, they bounce.</span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="text-brand-red">✦</span>
+                  <span>People ask "how much?", read your prices, and ghost—because your visual presence looks cheap.</span>
+                </li>
+                <li className="flex gap-4">
+                  <span className="text-brand-red">✦</span>
+                  <span>You rely 100% on word-of-mouth while competitors with worse skills steal your Google traffic.</span>
+                </li>
+              </ul>
             </motion.div>
+            
             <motion.div 
               variants={fadeUp}
-              className="text-lg md:text-xl leading-relaxed text-brand-bg/70"
+              className="text-lg md:text-xl leading-relaxed text-brand-bg/80 flex flex-col justify-center"
             >
-              Bad design screams "we don't care". Don't lose money and reputation over visual garbage. Your business deserves a vibe that sells itself and commands respect the second they click the link.
+              <p className="mb-6">
+                Trust isn't an accident. It's built on <span className="text-white font-bold">visual authority</span>. You might be the absolute best at what you do, but if your site looks like some template from 2007, people assume your work is outdated too.
+              </p>
+              <p>
+                When a client lands on a premium, unapologetic design, <strong className="text-brand-pink">price objections disappear.</strong> Bad design screams "we don't care". Your business deserves a vibe that pre-sells your expertise and commands respect the second they click the link.
+              </p>
             </motion.div>
           </div>
+
+          <motion.div variants={fadeUp} className="mt-16">
+            <h3 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight text-white mb-10 text-center">What a real website actually does:</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              <motion.div 
+                whileHover={{ y: -10, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                className="bg-brand-red rounded-3xl p-8 border-4 border-brand-dark shadow-[8px_8px_0px_0px_#1a1a1a] cursor-default"
+              >
+                <div className="text-6xl md:text-7xl font-display font-bold text-brand-dark mb-4">+40%</div>
+                <div className="text-2xl font-bold text-white uppercase mb-4 tracking-wide">More Bookings</div>
+                <div className="text-white/90 font-medium text-lg leading-relaxed">Because the UX doesn't suck. Clients can actually find your services and book an appointment in 2 clicks.</div>
+              </motion.div>
+              
+              <motion.div 
+                whileHover={{ y: -10, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                className="bg-brand-pink rounded-3xl p-8 border-4 border-brand-dark shadow-[8px_8px_0px_0px_#1a1a1a] cursor-default"
+              >
+                <div className="text-6xl md:text-7xl font-display font-bold text-brand-dark mb-4">3x</div>
+                <div className="text-2xl font-bold text-brand-dark uppercase mb-4 tracking-wide">Warm Leads</div>
+                <div className="text-brand-dark/80 font-medium text-lg leading-relaxed">Visual authority pre-sells your expertise. They already trust you and love your vibe before you even speak.</div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ y: -10, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+                className="bg-white rounded-3xl p-8 border-4 border-brand-dark shadow-[8px_8px_0px_0px_#1a1a1a] cursor-default"
+              >
+                <div className="text-6xl md:text-7xl font-display font-bold text-brand-red mb-4">24/7</div>
+                <div className="text-2xl font-bold text-brand-dark uppercase mb-4 tracking-wide">Sales Machine</div>
+                <div className="text-brand-dark/80 font-medium text-lg leading-relaxed">Your site closes deals while you sleep. No more copying and pasting prices and answering the same FAQs in DMs at 2 AM.</div>
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
         
         {/* Decorative elements */}
